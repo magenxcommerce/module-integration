@@ -3,7 +3,6 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 namespace Magento\Integration\Plugin\Model;
 
 use Magento\Integration\Model\AdminTokenService;
@@ -32,15 +31,14 @@ class AdminUser
      *
      * @param \Magento\User\Model\User $subject
      * @param \Magento\Framework\DataObject $object
-     * @return \Magento\User\Model\User
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @return $this
      */
     public function afterSave(
         \Magento\User\Model\User $subject,
         \Magento\Framework\DataObject $object
-    ): \Magento\User\Model\User {
+    ) {
         $isActive = $object->getIsActive();
-        if ($isActive !== null && $isActive == 0) {
+        if (isset($isActive) && $isActive == 0) {
             $this->adminTokenService->revokeAdminAccessToken($object->getId());
         }
         return $subject;

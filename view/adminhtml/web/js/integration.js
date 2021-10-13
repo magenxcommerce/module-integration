@@ -187,7 +187,7 @@ define([
             },
 
             /**
-             * Function to check the location of the child popup window.
+             * Function to check the location of the child popoup window.
              * Once detected if the callback is successful, parent window will be reloaded
              */
             fnCheckLocation: function () {
@@ -204,7 +204,7 @@ define([
                         clearInterval(IdentityLogin.checker);
                         $('body').trigger('processStart');
                         //Check for window closed
-                        window.location.href = url.grid;
+                        window.location.reload();
                         IdentityLogin.jqInfoDialog.modal('closeModal');
                     }
                 } catch (e) {
